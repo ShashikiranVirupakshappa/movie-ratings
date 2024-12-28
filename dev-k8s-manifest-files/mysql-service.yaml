@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysqldb
+  name: mysql
 spec:
-  type: ExternalName
-  externalName: host.docker.internal
+  selector:
+    app: mysql
   ports:
     - port: 3306
-      targetPort: 3306
+      protocol: TCP
+      name: tcp
