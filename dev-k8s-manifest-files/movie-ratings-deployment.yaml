@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-ratings-deploy
+  namespace: default
+  labels:
+    app: movie-ratings
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie-ratings
+  template:
+    metadata:
+      labels:
+        app: movie-ratings
+    spec:
+      containers:
+        -
+          image: shashi72174/movie-ratings:1.0
+          imagePullPolicy: Always
+          ports:
+            -
+              containerPort: 8083
+              name: movie-ratings
+          name: movie-ratings
